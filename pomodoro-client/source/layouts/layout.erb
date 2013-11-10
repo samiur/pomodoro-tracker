@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Pomodoro">
+  <%= partial 'layouts/head' %>
+  <body>
+    <div id="wrap">
+      <%= partial 'layouts/navigation' %>
+      <div id="main">
+        <div class="container">
+          <div class="wrapper">
+            <div class="proper-content">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="push"><!--//--></div>
+    </div>
+    <%= partial 'layouts/footer' %>
+  </body>
+  <%= javascript_include_tag "all" %>
+</html>
