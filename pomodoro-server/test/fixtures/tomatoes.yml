@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  plan_time: 1
+  work_time: 1
+  break_time: 1
+  plan_time_finished: 1
+  work_time_finished: 1
+  break_time_finished: 1
+  completed: false
+  user_id: 
+
+two:
+  plan_time: 1
+  work_time: 1
+  break_time: 1
+  plan_time_finished: 1
+  work_time_finished: 1
+  break_time_finished: 1
+  completed: false
+  user_id: 
