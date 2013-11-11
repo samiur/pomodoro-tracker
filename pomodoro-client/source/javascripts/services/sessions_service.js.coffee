@@ -21,7 +21,7 @@ app.factory 'Session', ['$http', '$cookieStore', '$q', 'User', ($http, $cookieSt
         if @user
           deferred.resolve(@user)
         else
-          $http.get('http://localhost:5000/users/me', {params: {user_email: @email(),
+          $http.get('#{apiRootUrl}/users/me', {params: {user_email: @email(),
           user_token: @authToken()}}).success((data, status) ->
             @user = new User(data.user)
             deferred.resolve(@user)
@@ -36,7 +36,7 @@ app.factory 'Session', ['$http', '$cookieStore', '$q', 'User', ($http, $cookieSt
 
     @signIn: (email, password) ->
       deferred = $q.defer()
-      $http.post('http://localhost:5000/users/sign_in', {email: email, password: password}).
+      $http.post('#{apiRootUrl}/users/sign_in', {email: email, password: password}).
       success((data, status) ->
         @loggedIn = true
         user = data.user
@@ -52,7 +52,7 @@ app.factory 'Session', ['$http', '$cookieStore', '$q', 'User', ($http, $cookieSt
     @signOut: () ->
       if @loggedIn()
         deferred = $q.defer()
-        $http.delete('http://localhost:5000/users/sign_out', {params: {authentication_token: @authToken()}}).
+        $http.delete('#{apiRootUrl}/users/sign_out', {params: {authentication_token: @authToken()}}).
         success((data, status) ->
           deferred.resolve(data)
         ).error((data, status) ->
