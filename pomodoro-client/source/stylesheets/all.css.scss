@@ -3,7 +3,7 @@
 @import "bootstrap.css";
 @import "flat-ui.css";
 @import "prettify.css";
-@import "pomodoro.css";
+@import "pomodoro";
 
 html, body, .container, .content {
   height: 100%;
@@ -45,6 +45,6 @@ a {
   clear:both;
   padding-top: 0px;
   padding-bottom: 0px;
-  color: $white;
+  color: #e3e3e3;
   border: 1px solid #e3e3e3;
 }
