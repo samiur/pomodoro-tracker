@@ -1,0 +1,88 @@
+---
+title: Tomato
+---
+<div ng-controller="TomatoCtrl">
+  <div class="page-header">
+    <h1><%= current_page.data.title %></h1>
+  </div>
+
+  <div class="loading" ng-hide="loaded">
+    <div class="row">
+      <div class="span12">
+        <h3 class="text-center">Loading...</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="setup-tomato" ng-hide="tomatoInProgress" ng-show="loaded">
+    <div class="row">
+      <form class="form-inline" role="form">
+        <div class="control-group">
+          <div class="span4">
+            <label class="control-label" for="breakTime">Break Time: </label>
+            <div class="input-append">
+              <input type="text" class="input-small" ng-model="breakTime" />
+              <span class="add-on">mins</span>
+            </div>
+          </div>
+          <div class="span4">
+            <label class="control-label" for="breakTime">Planning Time: </label>
+            <div class="input-append">
+              <input type="text" class="input-small" ng-model="planTime" />
+              <span class="add-on">mins</span>
+            </div>
+
+          </div>
+          <div class="span4">
+            <label class="control-label" for="breakTime">Work Time: </label>
+            <div class="input-append">
+              <input type="text" class="input-small" ng-model="workTime" />
+              <span class="add-on">mins</span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+      <div class="span4 offset4">
+        <a ng-click="startTomato()" class="btn btn-primary btn-wide text-center">
+          Start Tomato
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="current-tomato" ng-if="tomatoInProgress">
+    <div class="row">
+      <div class="span12">
+        <h3>{{tomato.currentStage()}} Stage</h3>
+      </div>
+    </div>
+    <div class="row">
+      <span class="span8 offset2 text-center">
+        <div ng-timer time='tomato'></div>
+      </span>
+    </div>
+
+    <div class="row">
+      <div class="span8 offset2">
+        <progress percent="tomato.currentStageComplete()" class="progress-striped"></progress>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span8 offset2" ng-switch on="tomato.currentStage()">
+        <div plan-tomato tomato='tomato' ng-switch-when="Plan"></div>
+        <div work-tomato tomato='tomato' ng-switch-when="Work"></div>
+        <div break-tomato tomato='tomato' ng-switch-when="Break"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span4 offset4" ng-show="tomatoInProgress">
+        <button ng-click="cancelTomato(tomato)" class="btn btn-primary btn-wide text-center">
+          Cancel Tomato
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
